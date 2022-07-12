@@ -26,6 +26,9 @@ class Notification
 
     /** @var array Auth details : VAPID */
     private $auth;
+    
+    /** @var RequestInterface */
+    private $request;
 
     public function __construct(SubscriptionInterface $subscription, ?string $payload, array $options, array $auth)
     {
@@ -59,4 +62,15 @@ class Notification
     {
         return count($this->auth) > 0 ? $this->auth : $defaultAuth;
     }
+    
+    private function setRequest(RequestInterface $request)
+    {
+        $this->request = $request;
+    }
+    
+    public function getRequest(): ?RequestInterface
+    {
+        return $this->request;
+    }
+    
 }
